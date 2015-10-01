@@ -82,6 +82,18 @@ exports.BattleScripts = {
 				baseSignatureMove: 'flamethrower', signatureMove: 'BEST F-CAR',
 				evs: {atk:252,def:4,spe:252}, nature: 'Adamant'
 			}*/
+			'Poomph':{
+				species: "Ampharos", ability: "Little Engine", item: 'Life Orb', gender: 'M',
+				moves: ['headsmash','frustration','withdraw', 'endure','wish'],
+				baseSignaturMove: 'vcreate', signatureMove: 'Eternal Struggle',
+				evs: {hp:252, atk:252, def:4}, nature: 'Adamant'
+			}
+			'WhatevsFur':{
+				species: "Ursaring", ability: "Furrier Coat", item: 'Leftovers', gender: 'F',
+				moves: ['earthquake','drainpunch','bulkup','protect','aromatherapy']
+				baseSignaturMove: 'wish', signatureMove: 'wish',
+				evs: {hp:252, spd:228, def:88}, nature: 'Careful'
+			}
 		};
 		var pool = Object.keys(sets).randomize();
 		for (var i = 0; i < Math.min(6, pool.length); i++) {
@@ -185,6 +197,18 @@ exports.BattleScripts = {
 				baseSignatureMove: 'flamethrower', signatureMove: 'BEST F-CAR',
 				evs: {atk:252,def:4,spe:252}, nature: 'Adamant'
 			}*/
+			'Poomph':{
+				species: "Ampharos", ability: "Little Engine", item: 'Life Orb', gender: 'M',
+				moves: ['headsmash','frustration','withdraw', 'endure','wish'],
+				baseSignaturMove: 'vcreate', signatureMove: 'Eternal Struggle',
+				evs: {hp:252, atk:252, def:4}, nature: 'Adamant'
+			}
+			'WhatevsFur':{
+				species: "Ursaring", ability: "Furrier Coat", item: 'Leftovers', gender: 'F',
+				moves: ['earthquake','drainpunch','bulkup','protect','aromatherapy']
+				baseSignaturMove: 'wish', signatureMove: 'wish',
+				evs: {hp:252, spd:228, def:88}, nature: 'Careful'
+			}
 		};
 		var pool = Object.keys(sets).randomize();
 		for (var i = 0; i < Math.min(6, pool.length); i++) {
@@ -287,6 +311,18 @@ exports.BattleScripts = {
 				ivs: {atk:30, def:30}, // in order for HP Ice to be a thing.
 				baseSignatureMove: 'flamethrower', signatureMove: 'BEST F-CAR',
 				evs: {spa:252,def:4,spe:252}, nature: 'Modest'
+			}
+			'Poomph':{
+				species: "Ampharos", ability: "Little Engine", item: 'Life Orb', gender: 'M',
+				moves: ['headsmash','frustration','withdraw', 'endure','wish'],
+				baseSignaturMove: 'vcreate', signatureMove: 'Eternal Struggle',
+				evs: {hp:252, atk:252, def:4}, nature: 'Adamant'
+			}
+			'WhatevsFur':{
+				species: "Ursaring", ability: "Furrier Coat", item: 'Leftovers', gender: 'F',
+				moves: ['earthquake','drainpunch','bulkup','protect','aromatherapy']
+				baseSignaturMove: 'wish', signatureMove: 'wish',
+				evs: {hp:252, spd:228, def:88}, nature: 'Careful'
 			}
 		};
 		var pool = Object.keys(sets).randomize();
