@@ -421,6 +421,20 @@ exports.Formats = [
 				}
 				];
 			}
+			if (name === 'poomph' && move.id === 'vcreate') { // Eternal Struggle
+				move.name = 'Eternal Struggle';
+				move.type = 'Electric';
+				move.basePower = 220;
+				move.accuracy = 100;
+				move.onPrepareHit = function (target, source, move) {
+					this.attrLastMove('[still]');
+					this.add('-anim', source, 'Discharge', target);
+				};
+				move.onHit = function (target, source, move) {
+					this.boost({atk:-1, def:-1, spa:-1, spd:-1, spe:-1, accuracy:1, evasion:1}, source);
+					this.recoil([50,100], source);
+				};
+			}
 		},
 		onSwitchInPriority: 1,
 		onSwitchIn: function(pokemon) {
