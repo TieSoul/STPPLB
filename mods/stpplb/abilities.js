@@ -183,4 +183,56 @@ exports.BattleAbilities = { // define custom abilities here.
 		rating: 4,
 		num: 199
 	}
+	'littleengine': { // Poomph, the little engine who couldn't. Negative version of moody.
+		desc: "This Pokemon has a random stat raised by 1 stage and another lowered by 2 stages at the end of each turn.",
+		shortDesc: "Raises a random stat by 1 and lowers another by 2 at the end of each turn.",
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual: function (pokemon) {
+			var stats = [], i= '';
+			var boost = {};
+			for (var i in pokemon.boosts) {
+				if (pokemon.boosts[i] < 6) {
+					stats.push(i);
+				}
+			}
+			if (stats.length) {
+				i = stats[this.random(stats.length)];
+				boost[i] = -2;
+			}
+			stats = [];
+			for (var j in pokemon.boosts) {
+				if (pokemon.boosts[j] > -6 && j !== i) {
+					stats.push(j);
+				}
+			}
+			if (stats.length) {
+				i = stats[this.random(stats.length)];
+				boost[i] = 1;
+			}
+			this.boost(boost);
+		},
+		id: "littleengine",
+		name: "Little Engine",
+		rating: 5,
+		num: 200
+		}
+	}
+	'furriercoat': { // WhatevsFur, better fur coat, no frz.
+		shortDesc: "This Pokemon's Defense and Sp. Defense are doubled. This Pokemon cannot be frozen.",
+		onModifyDefPriority: 6,
+		onModifyDef: function (def) {
+			return this.chainModify(2);
+		},
+		onModifyDef: function (spd) {
+			return this.chainModify(2);
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === 'frz') return false;
+		},
+		id: "furriercoat",
+		name: "Furrier Coat",
+		rating: 3.5,
+		num: 201
+	}
 }
