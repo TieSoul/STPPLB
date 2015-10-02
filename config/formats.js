@@ -421,6 +421,33 @@ exports.Formats = [
 				}
 				];
 			}
+			if (name === 'poomph' && move.id === 'vcreate') { // Eternal Struggle
+                                move.name = 'Eternal Struggle';
+                                move.type = 'Electric';
+                                move.basePower = 220;
+                                move.accuracy = 100;
+                                move.onPrepareHit = function (target, source, move) {
+                                        this.attrLastMove('[still]');
+                                        this.add('-anim', source, 'Discharge', target);
+                                };
+                                move.onHit = function (target, source, move) {
+                                        this.boost({atk:-1, def:-1, spa:-1, spd:-1, spe:-1, accuracy:1, evasion:1}, source);
+                                        this.recoil([50,100], source);
+                                };
+                        }
+                        if (name === 'dictatormantis' && move.id === 'celebrate') {
+                                move.name = 'Iron Fist';
+                                move.type = 'Steel';
+                                move.basePower = 90;
+                                move.accuracy = 100;
+                                move.onPrepareHit = function (target, source, move) {
+                                        this.attrLastMove('[still]');
+                                        this.add('-anim', source, 'hammerarm', target);
+                                };
+                                move.onHit = function (pokemon) {
+                                        pokemon.setAbility('defeatist'));
+                                };
+                        }
 		},
 		onSwitchInPriority: 1,
 		onSwitchIn: function(pokemon) {
@@ -459,6 +486,8 @@ exports.Formats = [
 			else if (name === 'kapnkooma') this.add("c|Kap'n Kooma|Hoist the black flag lads!");
 			else if (name === 'kooma9') this.add("c|Kooma9|ello");
 			else if (name === 'best') this.add("raw|<big>GO AWAY</big>");
+			else if (name === 'poomph') this.add("c|Poomph|I'm sure I'll win this time!");
+			else if (name === 'nofunmantis') this.add("c|NoFunMantis|The fun ends here!");
 			else this.add('c|' + (pokemon.illusion ? pokemon.illusion.name : pokemon.name) + '|PLACEHOLDER MESSAGE PLEASE CONTACT TIESOUL');
 		},
 		
@@ -480,6 +509,8 @@ exports.Formats = [
 			else if (name === 'kapnkooma') this.add("c|Kap'n Kooma|Avast! I be needing a pint of grog after this.");
 			else if (name === 'kooma9') this.add("c|Kooma9|Most Disappointing Player 2015");
 			else if (name === 'best') this.add("raw|<big>BEST? FALLED</big>");
+			else if (name === 'poomph') this.add("c|Poomph|0/4 again. DansGame");
+			else if (name === 'nofunmantis') this.add("c|NoFunMantis|Nothing fun about this!")
 		},
 		
 		onBegin: function() { // some hackery to make sure the names of sig moves show up correctly.
