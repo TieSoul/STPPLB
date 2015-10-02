@@ -256,7 +256,7 @@ exports.BattleAbilities = { // define custom abilities here.
                         }
                 },
                 onTryAnyMove: function (target, source, effect) {
-                        if (effect.id === 'celebrate') {
+                        if (effect.id === 'celebrate' || effect.id === 'disappointment') {
                                 this.attrLastMove('[still]');
                                 this.add('-activate', this.effectData.target, 'ability: No Fun Allowed');
                                 return false;
