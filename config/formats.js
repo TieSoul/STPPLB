@@ -178,7 +178,7 @@ exports.Formats = [
 		},
 		onModifyMove: function(move, pokemon) { // this is where the signature moves are actually done.
 			var name = toId(pokemon.illusion && move.sourceEffect === 'allyswitch' ? pokemon.illusion.name : pokemon.name);
-			if (name === 'darkfiregamer' && move.id === 'darkpulse') { // Darkfire
+			if (name === 'darkfiregamer' && move.id === 'celebrate') { // Darkfire
 				move.name = "Darkfire";
 				move.basePower = 90;
 				move.accuracy = 100;
@@ -193,7 +193,7 @@ exports.Formats = [
 					pokemon.item = temp; // give its normal item back.
 				}
 			}
-			if (name === 'xfix' && move.id == 'metronome') { // (Super Glitch)
+			if (name === 'xfix' && move.id == 'celebrate') { // (Super Glitch)
 				if (pokemon.moveset[3] && pokemon.moveset[3].pp) { // I have no idea. No seriously. This was in the Super Staff Bros. code and I don't know what it does. Leaving it here.
 					pokemon.moveset[3].pp = Math.round(pokemon.moveset[3].pp * 10 + 6) / 10;
 				}
@@ -234,7 +234,7 @@ exports.Formats = [
 					return null;
 				};
 			}
-			if (name === 'azum4roll' && move.id === 'drainpunch') { // TM56
+			if (name === 'azum4roll' && move.id === 'celebrate') { // TM56
 				move.name = 'TM56';
 				move.type = 'Bird';
 				move.basePower = 205;
@@ -255,7 +255,7 @@ exports.Formats = [
 					this.boost({accuracy:1, evasion:1}, source);
 				};
 			}
-			if (name === 'iwamiger' && move.id === 'triattack') { // Hex Attack (more like Hax Attack amirite)
+			if (name === 'iwamiger' && move.id === 'celebrate') { // Hex Attack (more like Hax Attack amirite)
 				move.name = 'Hex Attack';
 				move.type = 'Ghost';
 				move.basePower = 100;
@@ -285,7 +285,7 @@ exports.Formats = [
 					}
 				};
 			}
-			if (name == 'poomph' && move.id == 'armthrust') { // Projectile Spam. (reminds me Poomph needs to be not a lucario kek)
+			if (name == 'poomph' && move.id == 'celebrate') { // Projectile Spam. (reminds me Poomph needs to be not a lucario kek)
 				move.name = 'Projectile Spam';
 				move.basePower = 12;
 				move.multihit = [8, 11];
@@ -302,7 +302,7 @@ exports.Formats = [
 					}
 				};
 			}
-			if (name === 'tiesoul' && move.id === 'bulkup') { // BULK!!
+			if (name === 'tiesoul' && move.id === 'celebrate') { // BULK!!
 				move.name = 'BULK!!';
 				move.boosts = {atk:2, def:2}; // best move
 				move.onPrepareHit = function(target, source, move) {
@@ -310,7 +310,7 @@ exports.Formats = [
 					this.add('-anim', source, 'Bulk Up', source);
 				}
 			}
-			if (name === 'somasghost' && move.id === 'shadowsneak') { // Shadow Rush (I think these comments might not be necessary.)
+			if (name === 'somasghost' && move.id === 'celebrate') { // Shadow Rush (I think these comments might not be necessary.)
 				move.name = 'Shadow Rush';
 				move.priority = 2;
 				move.basePower = 80;
@@ -320,7 +320,7 @@ exports.Formats = [
 					this.add('-anim', source, 'Shadow Sneak', target);
 				}
 			}
-			if (name === 'lasszeowx' && move.id === 'metronome') {
+			if (name === 'lasszeowx' && move.id === 'celebrate') {
 				move.name = 'Parting Volt Turn';
 				move.onHit = function(target) {
 					this.useMove('partingshot', target);
@@ -329,7 +329,7 @@ exports.Formats = [
 					this.add("c|Lass Zeowx|I'm getting outta here! Byeeeee~");
 				};
 			}
-			if (name === 'masterleozangetsu' && move.id === 'thunderbolt') {
+			if (name === 'masterleozangetsu' && move.id === 'celebrate') {
 				move.name = 'Scrub Bolt';
 				move.category = 'Physical';
 				move.basePower = 80;
@@ -344,7 +344,7 @@ exports.Formats = [
 					this.add('-anim', source, 'Thunderbolt', target);
 				}
 			}
-			if (name === 'eeveelutionlvr' && move.id === 'tailslap') {
+			if (name === 'eeveelutionlvr' && move.id === 'celebrate') {
 				move.name = "Evolution Beam";
 				move.eeveelutiontypes = ['Fire', 'Water', 'Electric', 'Psychic', 'Dark', 'Ice', 'Grass', 'Fairy'];
 				move.multihit = false;
@@ -389,7 +389,7 @@ exports.Formats = [
 					}
 				}
 			}
-			if (name === 'sohippy' && move.id === 'thunderbolt') {
+			if (name === 'sohippy' && move.id === 'celebrate') {
 				move.name = "Hyper WAHAHAHAHAHA";
 				move.flags = {protect: 1, mirror: 1, sound: 1, authentic: 1}; // authentic means it hits through subs.
 				move.onPrepareHit = function (target, source, move) {
@@ -398,12 +398,12 @@ exports.Formats = [
 				};
 				move.secondaries = [{chance: 20, status: 'par'}, {chance: 20, volatileStatus: 'confusion'}];
 			}
-			if (name === 'kapnkooma' && move.id === 'surf') {
+			if (name === 'kapnkooma' && move.id === 'celebrate') {
 				move.name = 'Broadside';
 				move.basePower = 18;
 				move.multihit = 5;
 			}
-			if (name === 'best' && move.id === 'flamethrower') { // best isn't in but I'm still keeping this BrokeBack
+			if (name === 'best' && move.id === 'celebrate') { // best isn't in but I'm still keeping this BrokeBack
 				move.name = 'BEST F-CAR';
 				move.basePower = 60;
 				move.secondaries = [
@@ -421,7 +421,7 @@ exports.Formats = [
 				}
 				];
 			}
-			if (name === 'poomph' && move.id === 'vcreate') { // Eternal Struggle
+			if (name === 'poomph' && move.id === 'celebrate') { // Eternal Struggle
                                 move.name = 'Eternal Struggle';
                                 move.type = 'Electric';
                                 move.basePower = 220;
