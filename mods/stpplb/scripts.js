@@ -6,25 +6,25 @@ exports.BattleScripts = {
 			'darkfiregamer': {
 				species: "Houndoom", ability: "Dark Aura", item: "Dark Gem", gender: "M",
 				moves: ['moonblast', 'hyperbeam', 'fireblast'],
-				baseSignatureMove: 'darkpulse', signatureMove: 'Darkfire',
+				baseSignatureMove: 'celebrate', signatureMove: 'Darkfire',
 				evs: {hp:4, spa:252, spe:252}, nature: 'Timid'
 			},
 			'xfix': {
 				species: 'Xatu', ability: 'Magic Bounce', item: 'Focus Sash', gender: 'M',
 				moves: ['thunderwave', 'substitute', 'roost'],
-				baseSignatureMove: 'metronome', signatureMove: "(Super Glitch)",
+				baseSignatureMove: 'celebrate', signatureMove: "(Super Glitch)",
 				evs: {hp:252, spd:252, def:4}, nature: 'Calm'
 			},
 			'azum4roll': {
 				species: "Azumarill", ability: "Glitchiate", item: "Metronome", gender: 'M',
 				moves: ['rollout', 'batonpass', 'swordsdance', 'bellydrum', 'extremespeed', 'playrough', 'thunderwave'],
-				baseSignatureMove: 'drainpunch', signatureMove: 'TM56',
+				baseSignatureMove: 'celebrate', signatureMove: 'TM56',
 				evs: {hp:4, atk:252, spe:252}, nature: 'Adamant'
 			},
 			'Iwamiger': {
 				species: "Gengar", ability: 'Serene Grace Plus', item: "Life Orb", gender: 'M',
 				moves: ['shadowball', 'flamethrower', 'icebeam', 'crunch'],
-				baseSignatureMove: 'triattack', signatureMove: 'Hex Attack',
+				baseSignatureMove: 'celebrate', signatureMove: 'Hex Attack',
 				evs: {hp:4, spa:252, spe:252}, nature: 'Timid'
 			},
 			/*'Poomph': { //Ampharos now, STPPB only
@@ -36,31 +36,31 @@ exports.BattleScripts = {
 			'TieSoul': {
 				species: 'Rhyperior', ability: 'Rock Head', item: 'Focus Sash', gender: 'M',
 				moves: ['headsmash', 'autotomize', 'earthquake'],
-				baseSignatureMove: 'bulkup', signatureMove: 'BULK!!',
+				baseSignatureMove: 'celebrate', signatureMove: 'BULK!!',
 				evs: {hp:252, def:252, spe:4}, nature: 'Impish'
 			},
 			"Soma's Ghost": {
 				species: 'Herdier', ability: 'Spoopify', item: 'Leftovers', gender: 'M',
 				moves: ['playrough', 'swordsdance', 'substitute'],
-				baseSignatureMove: 'shadowsneak', signatureMove: 'Shadow Rush',
+				baseSignatureMove: 'celebrate', signatureMove: 'Shadow Rush',
 				evs: {atk:252, def:4, spe:252}, nature: 'Jolly'
 			},
 			/*"Lass zeowx": { // STPPLB+ only
 				species: 'Liepard', ability: 'Protean', item: 'Focus Sash', gender: 'F',
 				moves: ['suckerpunch', 'shadowsneak', 'bulletpunch', 'playrough', 'spikes', 'acrobatics'].sample(2).concat('fakeout'), // always have Fake Out.
-				baseSignatureMove: 'metronome', signatureMove: 'Parting Volt Turn',
+				baseSignatureMove: 'celebrate', signatureMove: 'Parting Volt Turn',
 				evs: {atk:252, spa:12, spe:244}, nature: 'Hasty'
 			},*/
 			"Eeveelutionlvr": {
 				species: 'Eevee', ability: 'Proteon', item: 'Eviolite', gender: 'M',
 				moves: ['hydropump', 'flareblitz', 'thunderbolt', 'batonpass', 'nastyplot', 'dazzlinggleam', 'energyball', 'leechseed', 'blizzard', 'nightslash', 'psychic', 'hyperbeam'], // azum stop nagging about this moveset.
-				baseSignatureMove: 'tailslap', signatureMove: 'Evolution Beam',
+				baseSignatureMove: 'celebrate', signatureMove: 'Evolution Beam',
 				evs: {spa:252, spe:252, hp:4}, nature: 'Timid'
 			},
 			'sohippy': {
 				species: 'Rotom-Wash', ability: 'Swahahahahaggers', item: 'Leftovers', gender: 'M',
 				moves: ['scald', 'painsplit', 'destinybond', 'voltswitch', 'swagger', 'taunt', 'foulplay', 'hex', 'hydropump', 'electricterrain'],
-				baseSignatureMove: 'thunderbolt', signatureMove: 'Hyper WAHAHAHAHAHA',
+				baseSignatureMove: 'celebrate', signatureMove: 'Hyper WAHAHAHAHAHA',
 				evs: {hp:252, spa:252, spd:4}, nature: 'Modest'
 			},
 			'Kooma9': {
@@ -72,20 +72,20 @@ exports.BattleScripts = {
 			/*"Kap'n Kooma": { // STPPLB+ only
 				species: 'Kingdra', ability: 'Sea and Sky', item: 'Choice Specs', gender: 'M',
 				moves: ['steameruption', 'dracometeor', 'thunder'],
-				baseSignatureMove: 'surf', signatureMove: 'Broadside',
+				baseSignatureMove: 'celebrate', signatureMove: 'Broadside',
 				evs: {hp:4, spa:252, spe:252}, nature: 'Modest'
 			},*/
 			/*'BEST': { // STPPB only
 				species: 'Typhlosion', ability: 'Technician', item: 'Life Orb', gender: 'M',
 				moves: ['waterpulse', 'hiddenpowerice', 'shockwave'],
 				ivs: {atk:30, def:30}, // in order for HP Ice to be a thing.
-				baseSignatureMove: 'flamethrower', signatureMove: 'BEST F-CAR',
+				baseSignatureMove: 'celebrate', signatureMove: 'BEST F-CAR',
 				evs: {atk:252,def:4,spe:252}, nature: 'Adamant'
 			}*/
 			'Poomph':{
                                 species: "Ampharos", ability: "Little Engine", item: 'Life Orb', gender: 'M',
                                 moves: ['headsmash','frustration','withdraw', 'endure','wish'],
-                                baseSignaturMove: 'vcreate', signatureMove: 'Eternal Struggle',
+                                baseSignaturMove: 'celebrate', signatureMove: 'Eternal Struggle',
                                 evs: {hp:252, atk:252, def:4}, nature: 'Adamant'
                         }
 		};
@@ -115,61 +115,61 @@ exports.BattleScripts = {
 			'darkfiregamer': {
 				species: "Houndoom", ability: "Dark Aura", item: "Dark Gem", gender: "M",
 				moves: ['moonblast', 'hyperbeam', 'fireblast'],
-				baseSignatureMove: 'darkpulse', signatureMove: 'Darkfire',
+				baseSignatureMove: 'celebrate', signatureMove: 'Darkfire',
 				evs: {hp:4, spa:252, spe:252}, nature: 'Timid'
 			},
 			'xfix': {
 				species: 'Xatu', ability: 'Magic Bounce', item: 'Focus Sash', gender: 'M',
 				moves: ['thunderwave', 'substitute', 'roost'],
-				baseSignatureMove: 'metronome', signatureMove: "(Super Glitch)",
+				baseSignatureMove: 'celebrate', signatureMove: "(Super Glitch)",
 				evs: {hp:252, spd:252, def:4}, nature: 'Calm'
 			},
 			'azum4roll': {
 				species: "Azumarill", ability: "Glitchiate", item: "Metronome", gender: 'M',
 				moves: ['rollout', 'batonpass', 'swordsdance', 'bellydrum', 'extremespeed', 'playrough', 'thunderwave'],
-				baseSignatureMove: 'drainpunch', signatureMove: 'TM56',
+				baseSignatureMove: 'celebrate', signatureMove: 'TM56',
 				evs: {hp:4, atk:252, spe:252}, nature: 'Adamant'
 			},
 			'Iwamiger': {
 				species: "Gengar", ability: 'Serene Grace Plus', item: "Life Orb", gender: 'M',
 				moves: ['shadowball', 'flamethrower', 'icebeam', 'crunch'],
-				baseSignatureMove: 'triattack', signatureMove: 'Hex Attack',
+				baseSignatureMove: 'celebrate', signatureMove: 'Hex Attack',
 				evs: {hp:4, spa:252, spe:252}, nature: 'Timid'
 			},
 			'Poomph': {
 				species: "Lucario", ability: "Scrappy", item: 'Assault Vest', gender: 'M',
 				moves: ['rockwrecker', 'megahorn', 'bulletpunch'],
-				baseSignatureMove: 'armthrust', signatureMove: 'Projectile Spam',
+				baseSignatureMove: 'celebrate', signatureMove: 'Projectile Spam',
 				evs: {hp:4, atk:252, spe:252}, nature: 'Jolly'
 			},
 			'TieSoul': {
 				species: 'Rhyperior', ability: 'Rock Head', item: 'Focus Sash', gender: 'M',
 				moves: ['headsmash', 'autotomize', 'earthquake'],
-				baseSignatureMove: 'bulkup', signatureMove: 'BULK!!',
+				baseSignatureMove: 'celebrate', signatureMove: 'BULK!!',
 				evs: {hp:252, def:252, spe:4}, nature: 'Impish'
 			},
 			"Soma's Ghost": {
 				species: 'Herdier', ability: 'Spoopify', item: 'Leftovers', gender: 'M',
 				moves: ['playrough', 'swordsdance', 'substitute'],
-				baseSignatureMove: 'shadowsneak', signatureMove: 'Shadow Rush',
+				baseSignatureMove: 'celebrate', signatureMove: 'Shadow Rush',
 				evs: {atk:252, def:4, spe:252}, nature: 'Jolly'
 			},
 			"Lass zeowx": { // STPPLB+ only
 				species: 'Liepard', ability: 'Protean', item: 'Focus Sash', gender: 'F',
 				moves: ['suckerpunch', 'shadowsneak', 'bulletpunch', 'playrough', 'spikes', 'acrobatics'].sample(2).concat('fakeout'), // always have Fake Out.
-				baseSignatureMove: 'metronome', signatureMove: 'Parting Volt Turn',
+				baseSignatureMove: 'celebrate', signatureMove: 'Parting Volt Turn',
 				evs: {atk:252, spa:12, spe:244}, nature: 'Hasty'
 			},
 			"Eeveelutionlvr": {
 				species: 'Eevee', ability: 'Proteon', item: 'Eviolite', gender: 'M',
 				moves: ['hydropump', 'flareblitz', 'thunderbolt', 'batonpass', 'nastyplot', 'dazzlinggleam', 'energyball', 'leechseed', 'blizzard', 'nightslash', 'psychic', 'hyperbeam'], // azum stop nagging about this moveset.
-				baseSignatureMove: 'tailslap', signatureMove: 'Evolution Beam',
+				baseSignatureMove: 'celebrate', signatureMove: 'Evolution Beam',
 				evs: {spa:252, spe:252, hp:4}, nature: 'Timid'
 			},
 			'sohippy': {
 				species: 'Rotom-Wash', ability: 'Swahahahahaggers', item: 'Leftovers', gender: 'M',
 				moves: ['scald', 'painsplit', 'destinybond', 'voltswitch', 'swagger', 'taunt', 'foulplay', 'hex', 'hydropump', 'electricterrain'],
-				baseSignatureMove: 'thunderbolt', signatureMove: 'Hyper WAHAHAHAHAHA',
+				baseSignatureMove: 'celebrate', signatureMove: 'Hyper WAHAHAHAHAHA',
 				evs: {hp:252, spa:252, spd:4}, nature: 'Modest'
 			},
 			'Kooma9': {
@@ -181,20 +181,20 @@ exports.BattleScripts = {
 			"Kap'n Kooma": { // STPPLB+ only
 				species: 'Kingdra', ability: 'Sea and Sky', item: 'Choice Specs', gender: 'M',
 				moves: ['steameruption', 'dracometeor', 'thunder'],
-				baseSignatureMove: 'surf', signatureMove: 'Broadside',
+				baseSignatureMove: 'celebrate', signatureMove: 'Broadside',
 				evs: {hp:4, spa:252, spe:252}, nature: 'Modest'
 			},
 			/*'BEST': { // STPPB only
 				species: 'Typhlosion', ability: 'Technician', item: 'Life Orb', gender: 'M',
 				moves: ['waterpulse', 'hiddenpowerice', 'shockwave'],
 				ivs: {atk:30, def:30}, // in order for HP Ice to be a thing.
-				baseSignatureMove: 'flamethrower', signatureMove: 'BEST F-CAR',
+				baseSignatureMove: 'celebrate', signatureMove: 'BEST F-CAR',
 				evs: {atk:252,def:4,spe:252}, nature: 'Adamant'
 			}*/
 			'Poomph':{
                                 species: "Ampharos", ability: "Little Engine", item: 'Life Orb', gender: 'M',
                                 moves: ['headsmash','frustration','withdraw', 'endure','wish'],
-                                baseSignaturMove: 'vcreate', signatureMove: 'Eternal Struggle',
+                                baseSignaturMove: 'celebrate', signatureMove: 'Eternal Struggle',
                                 evs: {hp:252, atk:252, def:4}, nature: 'Adamant'
                         },
                         'WhatevsFur':{
@@ -242,61 +242,61 @@ exports.BattleScripts = {
 			'darkfiregamer': {
 				species: "Houndoom", ability: "Dark Aura", item: "Dark Gem", gender: "M",
 				moves: ['moonblast', 'hyperbeam', 'fireblast'],
-				baseSignatureMove: 'darkpulse', signatureMove: 'Darkfire',
+				baseSignatureMove: 'celebrate', signatureMove: 'Darkfire',
 				evs: {hp:4, spa:252, spe:252}, nature: 'Timid'
 			},
 			'xfix': {
 				species: 'Xatu', ability: 'Magic Bounce', item: 'Focus Sash', gender: 'M',
 				moves: ['thunderwave', 'substitute', 'roost'],
-				baseSignatureMove: 'metronome', signatureMove: "(Super Glitch)",
+				baseSignatureMove: 'celebrate', signatureMove: "(Super Glitch)",
 				evs: {hp:252, spd:252, def:4}, nature: 'Calm'
 			},
 			'azum4roll': {
 				species: "Azumarill", ability: "Glitchiate", item: "Metronome", gender: 'M',
 				moves: ['rollout', 'batonpass', 'swordsdance', 'bellydrum', 'extremespeed', 'playrough', 'thunderwave'],
-				baseSignatureMove: 'drainpunch', signatureMove: 'TM56',
+				baseSignatureMove: 'celebrate', signatureMove: 'TM56',
 				evs: {hp:4, atk:252, spe:252}, nature: 'Adamant'
 			},
 			'Iwamiger': {
 				species: "Gengar", ability: 'Serene Grace Plus', item: "Life Orb", gender: 'M',
 				moves: ['shadowball', 'flamethrower', 'icebeam', 'crunch'],
-				baseSignatureMove: 'triattack', signatureMove: 'Hex Attack',
+				baseSignatureMove: 'celebrate', signatureMove: 'Hex Attack',
 				evs: {hp:4, spa:252, spe:252}, nature: 'Timid'
 			},
 			'Poomph': {
 				species: "Lucario", ability: "Scrappy", item: 'Assault Vest', gender: 'M',
 				moves: ['rockwrecker', 'megahorn', 'bulletpunch'],
-				baseSignatureMove: 'armthrust', signatureMove: 'Projectile Spam',
+				baseSignatureMove: 'celebrate', signatureMove: 'Projectile Spam',
 				evs: {hp:4, atk:252, spe:252}, nature: 'Jolly'
 			},
 			'TieSoul': {
 				species: 'Rhyperior', ability: 'Rock Head', item: 'Focus Sash', gender: 'M',
 				moves: ['headsmash', 'autotomize', 'earthquake'],
-				baseSignatureMove: 'bulkup', signatureMove: 'BULK!!',
+				baseSignatureMove: 'celebrate', signatureMove: 'BULK!!',
 				evs: {hp:252, def:252, spe:4}, nature: 'Impish'
 			},
 			"Soma's Ghost": {
 				species: 'Herdier', ability: 'Spoopify', item: 'Leftovers', gender: 'M',
 				moves: ['playrough', 'swordsdance', 'substitute'],
-				baseSignatureMove: 'shadowsneak', signatureMove: 'Shadow Rush',
+				baseSignatureMove: 'celebrate', signatureMove: 'Shadow Rush',
 				evs: {atk:252, def:4, spe:252}, nature: 'Jolly'
 			},
 			"Lass zeowx": { // STPPLB+ only
 				species: 'Liepard', ability: 'Protean', item: 'Focus Sash', gender: 'F',
 				moves: ['suckerpunch', 'shadowsneak', 'bulletpunch', 'playrough', 'spikes', 'acrobatics'].sample(2).concat('fakeout'), // always have Fake Out.
-				baseSignatureMove: 'metronome', signatureMove: 'Parting Volt Turn',
+				baseSignatureMove: 'celebrate', signatureMove: 'Parting Volt Turn',
 				evs: {atk:252, spa:12, spe:244}, nature: 'Hasty'
 			},
 			"Eeveelutionlvr": {
 				species: 'Eevee', ability: 'Proteon', item: 'Eviolite', gender: 'M',
 				moves: ['hydropump', 'flareblitz', 'thunderbolt', 'batonpass', 'nastyplot', 'dazzlinggleam', 'energyball', 'leechseed', 'blizzard', 'nightslash', 'psychic', 'hyperbeam'], // azum stop nagging about this moveset.
-				baseSignatureMove: 'tailslap', signatureMove: 'Evolution Beam',
+				baseSignatureMove: 'celebrate', signatureMove: 'Evolution Beam',
 				evs: {spa:252, spe:252, hp:4}, nature: 'Timid'
 			},
 			'sohippy': {
 				species: 'Rotom-Wash', ability: 'Swahahahahaggers', item: 'Leftovers', gender: 'M',
 				moves: ['scald', 'painsplit', 'destinybond', 'voltswitch', 'swagger', 'taunt', 'foulplay', 'hex', 'hydropump', 'electricterrain'],
-				baseSignatureMove: 'thunderbolt', signatureMove: 'Hyper WAHAHAHAHAHA',
+				baseSignatureMove: 'celebrate', signatureMove: 'Hyper WAHAHAHAHAHA',
 				evs: {hp:252, spa:252, spd:4}, nature: 'Modest'
 			},
 			'Kooma9': {
@@ -308,20 +308,20 @@ exports.BattleScripts = {
 			"Kap'n Kooma": { // STPPLB+ only
 				species: 'Kingdra', ability: 'Sea and Sky', item: 'Choice Specs', gender: 'M',
 				moves: ['steameruption', 'dracometeor', 'thunder'],
-				baseSignatureMove: 'surf', signatureMove: 'Broadside',
+				baseSignatureMove: 'celebrate', signatureMove: 'Broadside',
 				evs: {hp:4, spa:252, spe:252}, nature: 'Modest'
 			},
 			'BEST': { // STPPB only
 				species: 'Typhlosion', ability: 'Technician', item: 'Life Orb', gender: 'M',
 				moves: ['waterpulse', 'hiddenpowerice', 'shockwave'],
 				ivs: {atk:30, def:30}, // in order for HP Ice to be a thing.
-				baseSignatureMove: 'flamethrower', signatureMove: 'BEST F-CAR',
+				baseSignatureMove: 'celebrate', signatureMove: 'BEST F-CAR',
 				evs: {spa:252,def:4,spe:252}, nature: 'Modest'
 			},
 			'Poomph':{
                                 species: "Ampharos", ability: "Little Engine", item: 'Life Orb', gender: 'M',
                                 moves: ['headsmash','frustration','withdraw', 'endure','wish'],
-                                baseSignaturMove: 'vcreate', signatureMove: 'Eternal Struggle',
+                                baseSignaturMove: 'celebrate', signatureMove: 'Eternal Struggle',
                                 evs: {hp:252, atk:252, def:4}, nature: 'Adamant'
                         },
                         'WhatevsFur':{
