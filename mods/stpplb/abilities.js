@@ -167,7 +167,7 @@ exports.BattleAbilities = { // define custom abilities here.
 				for (var j = 0; j < this.sides[i].active.length; j++) {
 					var target = this.sides[i].active[j];
 					if (target === pokemon) continue;
-					if (target && target.hp && (target.ability === 'primordialsea' || target.ability === 'seaandsky') && target.ignore['Ability'] !== true) {
+					if (target && target.hp && target.ability === 'primordialsea' && target.ignore['Ability'] !== true) {
 						this.weatherData.source = target;
 						return;
 					}
@@ -176,102 +176,41 @@ exports.BattleAbilities = { // define custom abilities here.
 			this.clearWeather();
 		},
 		onModifySpe: function (speMod, pokemon) { // the swift swim portion which apparently doesn't work.
-			return this.chainModify(2);
+			return this.chain(speMod, 2);
 		},
 		id: 'seaandsky',
 		name: 'Sea and Sky',
 		rating: 4,
 		num: 199
-	},
-	'littleengine': { // Poomph, the little engine who couldn't. Negative version of moody.
-		desc: "This Pokemon has a random stat raised by 1 stage and another lowered by 2 stages at the end of each turn.",
-		shortDesc: "Raises a random stat by 1 and lowers another by 2 at the end of each turn.",
-		onResidualOrder: 26,
-		onResidualSubOrder: 1,
-		onResidual: function (pokemon) {
-			var stats = [], i= '';
-			var boost = {};
-			for (var i in pokemon.boosts) {
-				if (pokemon.boosts[i] < 6) {
-					stats.push(i);
-				}
+	}
+}
+"messiah": {
+		desc: "This Pokemon blocks certain status moves and instead uses the move against the original user. Increases Sp.Attack by 2",
+		shortDesc: "This Pokemon blocks certain status moves and bounces them back to the user. Boosts Sp.Attack by 2",
+		id: "messiah",
+		name: "Messaiah",
+		onTryHitPriority: 1,
+		onTryHit: function (target, source, move) {
+			if (target === source || move.hasBounced || !move.flags['reflectable']) {
+				return;
 			}
-			if (stats.length) {
-				i = stats[this.random(stats.length)];
-				boost[i] = 1;
-			}
-			stats = [];
-			for (var j in pokemon.boosts) {
-				if (pokemon.boosts[j] > -6 && j !== i) {
-					stats.push(j);
-				}
-			}
-			if (stats.length) {
-				i = stats[this.random(stats.length)];
-				boost[i] = -2;
-			}
-			this.boost(boost);
+			var newMove = this.getMoveCopy(move.id);
+			newMove.hasBounced = true;
+			this.useMove(newMove, target, source);
+			return null;
 		},
-		id: "littleengine",
-		name: "Little Engine",
-		rating: -1,
+		onAllyTryHitSide: function (target, source, move) {
+			if (target.side === source.side || move.hasBounced || !move.flags['reflectable']) {
+				return;
+			}
+			var newMove = this.getMoveCopy(move.id);
+			newMove.hasBounced = true;
+			this.useMove(newMove, target, source);
+			return null;
+		},
+		effect: {
+			duration: 1
+		},
+		rating: 4.5,
 		num: 200
 	},
-	'furriercoat': { // WhatevsFur, better fur coat, no frz.
-		shortDesc: "This Pokemon's Defense and Sp. Defense are doubled. This Pokemon cannot be frozen.",
-		onModifyDefPriority: 6,
-		onModifyDef: function (def) {
-			return this.chainModify(2);
-		},
-		onModifySpdPriotiy: 6,
-		onModifySpd: function (spd) {
-			return this.chainModify(2);
-		},
-		onImmunity: function (type, pokemon) {
-			if (type === 'frz') return false;
-		},
-		id: "furriercoat",
-		name: "Furrier Coat",
-		rating: 3.5,
-		num: 201
-	},
-	'nofun': {
-		shortDesc: "Abilities are fun. No more ability for you.",
-		id: "nofun",
-		name: "No Fun",
-		rating: 0,
-		num: 202
-	},
-	'nofunallowed': {
-		shortDesc: "Makes opponent's ability No Fun. Causes all custom moves to fail.",
-		onFoeSwitchIn: function (pokemon) {
-			var oldAbility = pokemon.setAbility('nofun', pokemon, 'nofun', true);
-			if (oldAbility) {
-				this.add('-endability', pokemon, oldAbility, '[from] ability: No Fun Allowed');
-				this.add('-ability', pokemon, 'No Fun', '[from] ability: No Fun Allowed');
-			}
-		},
-		onStart: function (pokemon){
-			var foeactive = pokemon.side.foe.active;
-			for (var i = 0; i < foeactive.length; i++) {
-				var pokemon = foeactive[i];
-				var oldAbility = pokemon.setAbility('nofun', pokemon, 'nofun', true);
-				if (oldAbility) {
-					this.add('-endability', pokemon, oldAbility, '[from] ability: No Fun Allowed');
-					this.add('-ability', pokemon, 'No Fun', '[from] ability: No Fun Allowed');
-				}
-			}
-		},
-		onAnyTryMove: function (target, source, effect) {
-			if (effect.num > 621) {
-				this.attrLastMove('[still]');
-				this.add("raw|No Fun Mantis's No Fun Allowed suppressed the signature move!");
-				return false;
-			}
-		},
-		id: "nofunallowed",
-		name: "No Fun Allowed",
-		rating: 1,
-		num: 203
-	},
-}
