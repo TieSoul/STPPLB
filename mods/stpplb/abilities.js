@@ -167,7 +167,7 @@ exports.BattleAbilities = { // define custom abilities here.
 				for (var j = 0; j < this.sides[i].active.length; j++) {
 					var target = this.sides[i].active[j];
 					if (target === pokemon) continue;
-					if (target && target.hp && target.ability === 'primordialsea' && target.ignore['Ability'] !== true) {
+					if (target && target.hp && (target.ability === 'primordialsea' || target.ability === 'seaandsky') && target.ignore['Ability'] !== true) {
 						this.weatherData.source = target;
 						return;
 					}
@@ -176,7 +176,7 @@ exports.BattleAbilities = { // define custom abilities here.
 			this.clearWeather();
 		},
 		onModifySpe: function (speMod, pokemon) { // the swift swim portion which apparently doesn't work.
-			return this.chain(speMod, 2);
+			return this.chainModify(2);
 		},
 		id: 'seaandsky',
 		name: 'Sea and Sky',
@@ -184,118 +184,165 @@ exports.BattleAbilities = { // define custom abilities here.
 		num: 199
 	},
 	'littleengine': { // Poomph, the little engine who couldn't. Negative version of moody.
-                desc: "This Pokemon has a random stat raised by 1 stage and another lowered by 2 stages at the end of each turn.",
-                shortDesc: "Raises a random stat by 1 and lowers another by 2 at the end of each turn.",
-                onResidualOrder: 26,
-                onResidualSubOrder: 1,
-                onResidual: function (pokemon) {
-                        var stats = [], i= '';
-                        var boost = {};
-                        for (var i in pokemon.boosts) {
-                                if (pokemon.boosts[i] < 6) {
-                                        stats.push(i);
-                                }
-                        }
-                        if (stats.length) {
-                                i = stats[this.random(stats.length)];
-                                boost[i] = -2;
-                        }
-                        stats = [];
-                        for (var j in pokemon.boosts) {
-                                if (pokemon.boosts[j] > -6 && j !== i) {
-                                        stats.push(j);
-                                }
-                        }
-                        if (stats.length) {
-                                i = stats[this.random(stats.length)];
-                                boost[i] = 1;
-                        }
-                        this.boost(boost);
-                },
-                id: "littleengine",
-                name: "Little Engine",
-                rating: 5,
-                num: 200
-        },
-        'furriercoat': { // WhatevsFur, better fur coat, no frz.
-                shortDesc: "This Pokemon's Defense and Sp. Defense are doubled. This Pokemon cannot be frozen.",
-                onModifyDefPriority: 6,
-                onModifyDef: function (def) {
-                        return this.chainModify(2);
-                },
-                onModifySpdPriotiy: 6,
-                onModifySpd: function (spd) {
-                        return this.chainModify(2);
-                },
-                onImmunity: function (type, pokemon) {
-                        if (type === 'frz') return false;
-                },
-                id: "furriercoat",
-                name: "Furrier Coat",
-                rating: 3.5,
-                num: 201
-        },
-        'nofun': {
-                shortDesc: "Abilities are fun. No more ability for you.",
-                id: "nofun",
-                name: "No Fun",
-                rating: 0,
-                num: 202
-        },
-        'nofunallowed': {
-                shortDesc: "Makes opponent's ability No Fun. Causes all custom moves to fail.",
-                onFoeModifyPokemon: function (pokemon) {
-                        pokemon.setAbility('nofun')
-                        }
-                },
-                onStart: function (pokemon){
-                        var foeactive = pokemon.side.foe.active;
-                        for (var i = 0; i < foeactive.length; i++) {
-                                var pokemon = foeactive[i];
-                                pokemon.setAbility('nofun')
-                        }
-                },
-                onTryAnyMove: function (target, source, effect) {
-                        if (effect.id === 'celebrate' || effect.id === 'disappointment') {
-                                this.attrLastMove('[still]');
-                                this.add('-activate', this.effectData.target, 'ability: No Fun Allowed');
-                                return false;
-                        }
-                },
-                id: "nofunallowed",
-                name: "No Fun Allowed",
-                rating: 1,
-                num: 203
-        },
-        'technicality': {
-                onTryAnyMove: function (target, source, effect) {
-                        var blockchance = random(4);
-                        if (blockchance === 0) {
-                                this.attrLastMove('[still]');
-                                this.add('-activate', this.effectData.target, 'ability: Technicality');
-                                return false;
-                        } else {
-                                return true;
-                        }
-                },
-                id: "technicality",
-                name: "Technicality",
-                rating: 4,
-                num: 204
-        },
-        'banevade': {
-                onTryHit: function (pokemon, target, move) {
-                        if (move.ohko) {
-                                this.add('-immune', pokemon, '[msg]');
-                                return null;
-                        }
-                },
-                onModifyAccuracyPriority: 10,
-                onModifyAccuracy: function (accuracy, target) {
-                        if (typeof accuracy !== 'number') return;
-                        else {
-                                return accuracy * (target.hp / target.maxhp);
-                        }
-                },
-        }
+		desc: "This Pokemon has a random stat raised by 1 stage and another lowered by 2 stages at the end of each turn.",
+		shortDesc: "Raises a random stat by 1 and lowers another by 2 at the end of each turn.",
+		onResidualOrder: 26,
+		onResidualSubOrder: 1,
+		onResidual: function (pokemon) {
+			var stats = [], i= '';
+			var boost = {};
+			for (var i in pokemon.boosts) {
+				if (pokemon.boosts[i] < 6) {
+					stats.push(i);
+				}
+			}
+			if (stats.length) {
+				i = stats[this.random(stats.length)];
+				boost[i] = 1;
+			}
+			stats = [];
+			for (var j in pokemon.boosts) {
+				if (pokemon.boosts[j] > -6 && j !== i) {
+					stats.push(j);
+				}
+			}
+			if (stats.length) {
+				i = stats[this.random(stats.length)];
+				boost[i] = -2;
+			}
+			this.boost(boost);
+		},
+		id: "littleengine",
+		name: "Little Engine",
+		rating: -1,
+		num: 200
+	},
+	'furriercoat': { // WhatevsFur, better fur coat, no frz.
+		shortDesc: "This Pokemon's Defense and Sp. Defense are doubled. This Pokemon cannot be frozen.",
+		onModifyDefPriority: 6,
+		onModifyDef: function (def) {
+			return this.chainModify(2);
+		},
+		onModifySpdPriotiy: 6,
+		onModifySpd: function (spd) {
+			return this.chainModify(2);
+		},
+		onImmunity: function (type, pokemon) {
+			if (type === 'frz') return false;
+		},
+		id: "furriercoat",
+		name: "Furrier Coat",
+		rating: 3.5,
+		num: 201
+	},
+	'nofun': {
+		shortDesc: "Abilities are fun. No more ability for you.",
+		id: "nofun",
+		name: "No Fun",
+		rating: 0,
+		num: 202
+	},
+	'nofunallowed': {
+		shortDesc: "Makes opponent's ability No Fun. Causes all custom moves to fail.",
+		onFoeSwitchIn: function (pokemon) {
+			var oldAbility = pokemon.setAbility('nofun', pokemon, 'nofun', true);
+			if (oldAbility) {
+				this.add('-endability', pokemon, oldAbility, '[from] ability: No Fun Allowed');
+				this.add('-ability', pokemon, 'No Fun', '[from] ability: No Fun Allowed');
+			}
+		},
+		onStart: function (pokemon){
+			var foeactive = pokemon.side.foe.active;
+			for (var i = 0; i < foeactive.length; i++) {
+				var pokemon = foeactive[i];
+				var oldAbility = pokemon.setAbility('nofun', pokemon, 'nofun', true);
+				if (oldAbility) {
+					this.add('-endability', pokemon, oldAbility, '[from] ability: No Fun Allowed');
+					this.add('-ability', pokemon, 'No Fun', '[from] ability: No Fun Allowed');
+				}
+			}
+		},
+		onAnyTryMove: function (target, source, effect) {
+			if (effect.num > 621) {
+				this.attrLastMove('[still]');
+				this.add("raw|No Fun Mantis's No Fun Allowed suppressed the signature move!");
+				return false;
+			}
+		},
+		id: "nofunallowed",
+		name: "No Fun Allowed",
+		rating: 1,
+		num: 203
+	},
+	"dictator": {
+		desc: "On switch-in, this Pokemon lowers the Attack, Special Attack and Speed of adjacent opposing Pokemon by 1 stage. Pokemon behind a substitute are immune.",
+		shortDesc: "On switch-in, this Pokemon lowers the Attack, Special Attack and Speed of adjacent opponents by 1 stage.",
+		onStart: function (pokemon) {
+			var foeactive = pokemon.side.foe.active;
+			var activated = false;
+			for (var i = 0; i < foeactive.length; i++) {
+				if (!foeactive[i] || !this.isAdjacent(foeactive[i], pokemon)) continue;
+				if (!activated) {
+					this.add('-ability', pokemon, 'Dictator');
+					activated = true;
+				}
+				if (foeactive[i].volatiles['substitute']) {
+					this.add('-activate', foeactive[i], 'Substitute', 'ability: Dictator', '[of] ' + pokemon);
+				} else {
+					this.boost({atk: -1, spa: -1, spe: -1}, foeactive[i], pokemon);
+				}
+			}
+		},
+		id: "dictator",
+		name: "Dictator",
+		rating: 3.5,
+		num: 204
+	},
+	"messiah": {
+		desc: "This Pokemon blocks certain status moves and instead uses the move against the original user. Increases Sp.Attack by 2",
+		shortDesc: "This Pokemon blocks certain status moves and bounces them back to the user. Also gets a Sp.Attack boost",
+		id: "messiah",
+		name: "Messiah",
+		onTryHitPriority: 1,
+		onTryHit: function (target, source, move) {
+			if (target === source || move.hasBounced || !move.flags['reflectable']) {
+				return;
+			}
+			var newMove = this.getMoveCopy(move.id);
+			newMove.hasBounced = true;
+			this.useMove(newMove, target, source);
+			return null;
+		},
+		onAllyTryHitSide: function (target, source, move) {
+			if (target.side === source.side || move.hasBounced || !move.flags['reflectable']) {
+				return;
+			}
+			var newMove = this.getMoveCopy(move.id);
+			newMove.hasBounced = true;
+			this.useMove(newMove, target, source);
+			return null;
+		},
+		effect: {
+			duration: 1
+		},
+		rating: 4.5,
+		num: 205
+	},
+	'technicality': {
+		num: 206,
+		id: 'technicality',
+		name: 'Technicality',
+		onFoeTryMove: function (target, source, effect) {
+			if (this.random(10) === 0) {
+				this.attrLastMove('[still]');
+				this.add("c|DictatorMantis|This move doesn't work because I say so!");
+				return false;
+			}
+		},
+	},
+	'megaplunder': {
+		num: 207,
+		id: 'megaplunder',
+		name: 'Mega Plunder'
+	}
 }
