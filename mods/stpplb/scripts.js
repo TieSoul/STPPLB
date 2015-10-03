@@ -302,7 +302,7 @@ exports.BattleScripts = {
 				evs: {hp:4, atk:252, spe:252}, nature: 'Jolly'
 			},
 			'TieSoul': {
-				species: 'Rhyperior', ability: 'Rock Head', item: 'Focus Sash', gender: 'M',
+				species: 'Rhyperior', ability: 'Rock Head', item: 'Focus Sash', gender: 'F',//Keepo
 				moves: ['headsmash', 'autotomize', 'earthquake'],
 				signatureMove: 'bulk',
 				evs: {hp:252, def:252, spe:4}, nature: 'Impish'
@@ -381,6 +381,12 @@ exports.BattleScripts = {
 				signatureMove: 'afk',
 				evs: {hp: 4, spa: 252, spe: 252}, nature: 'Timid'
 			}
+			'Bird Jesus': { // STPPB only
+				species: 'Pidgeot', ability: 'Messiah', item: 'Flying Gem', gender: 'M',
+				moves: ['judgement', 'focusblast', 'roost','fireblast'],
+				signatureMove: 'godbird',
+				evs: {spa:252,def:4,spe:252}, nature: 'Timid'
+			},
 		};
 		var pool = Object.keys(sets).randomize();
 		for (var i = 0; i < Math.min(6, pool.length); i++) {
