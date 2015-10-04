@@ -198,6 +198,13 @@ exports.Formats = [
 					{type: 'Ghost', suppressed: false,  isAdded: false}
 				];
 			}
+			if (name === 'groundctrl27' && !pokemon.illusion) {
+				this.add('-start', pokemon, 'typechange', 'Ghost/Normal');
+				pokemon.typesData = [
+					{type: 'Ghost', suppressed: false,  isAdded: false},
+					{type: 'Normal', suppressed: false,  isAdded: false}
+				]
+			}
 			if (name === 'xfix') { // different message depending on hazards.
 				var hazards = {stealthrock: 1, spikes: 1, toxicspikes: 1, stickyweb: 1};
 				var hasHazards = false;
@@ -306,55 +313,11 @@ exports.Formats = [
 		section: 'STPPLB',
 		column: 2,
 		searchShow: true,
-		mod: 'superglitch',
-		ruleset: ['Metronome Clause', 'Pokemon', 'HP Percentage Mod', 'Cancel Mod', 'No Switching Clause', 'No Recycle Clause'],
-		banlist: ['Unreleased'],
+		mod: 'stpplb',
+		ruleset: ['Super Glitch Clause', 'HP Percentage Mod', 'Cancel Mod', 'No Switching Clause', 'No Recycle Clause', 'Ability Clause', 'Team Preview'],
 		
 		maxLevel: 100,
-		defaultLevel: 100,
-		
-		onModifyMove: function(move, pokemon) {
-			if (move.id == 'metronome') {
-				if (pokemon.moveset[3] && pokemon.moveset[3].pp) {
-					pokemon.moveset[3].pp = Math.round(pokemon.moveset[3].pp * 10 + 6) / 10;
-				}
-				move.name = '(Super Glitch)';
-				move.multihit = [2, 5];
-				move.onTryHit = function (target, source) {
-					if (!source.isActive) return null;
-					if (this.random(777) !== 42) return;
-					var opponent = pokemon.side.foe.active[0];
-					opponent.setStatus('brn');
-					var possibleStatuses = ['confusion', 'flinch', 'attract', 'focusenergy', 'foresight', 'healblock'];
-					for (var i = 0; i < possibleStatuses.length; i++) {
-						if (this.random(3) === 1) {
-							opponent.addVolatile(possibleStatuses[i]);
-						}
-					}
-
-					function generateNoise() {
-						var noise = '';
-						var random = this.random(40, 81);
-						for (var i = 0; i < random; i++) {
-							if (this.random(4) !== 0) {
-								// Non-breaking space
-								noise += '\u00A0';
-							} else {
-								noise += String.fromCharCode(this.random(0xA0, 0x3040));
-							}
-						}
-						return noise;
-					}
-					this.add('-message', "(Enemy " + generateNoise.call(this) + " TMTRAINER " + opponent.name + " is frozen solid?)");
-					this.add('-message', "(Enemy " + generateNoise.call(this) + " TMTRAINER " + opponent.name + " is hurt by its burn!)");
-					this.damage(opponent.maxhp * this.random(42, 96) * 0.01, opponent, opponent);
-					var exclamation = source.status === 'brn' ? '!' : '?';
-					this.add('-message', "(Enemy " + generateNoise.call(this) + " TMTRAINER " + pokemon.name + " is hurt by its burn" + exclamation + ")");
-					this.damage(source.maxhp * this.random(24, 48) * 0.01, source, source);
-					return null;
-				};
-			}
-		}
+		defaultLevel: 100
 	},
 
 	// Past Generation (hidden)
