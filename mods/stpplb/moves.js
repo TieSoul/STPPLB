@@ -18,6 +18,10 @@ exports.BattleMovedex = {
 				return false;
 			}
 		},
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Lunar Dance', source);
+		},
 		selfdestruct: true,
 		sideCondition: 'disappointment',
 		effect: {
@@ -65,6 +69,10 @@ exports.BattleMovedex = {
 		flags: {protect: 1, mirror: 1},
 		onEffectiveness: function (typeMod, type, move) {
 			return typeMod + this.getEffectiveness('Fire', type); // includes Fire in its effectiveness.
+		},
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Flamethrower', target);
 		},
 		self: {
 			onHit: function(pokemon) { // Mega evolves dfg
@@ -123,7 +131,7 @@ exports.BattleMovedex = {
 		onTryHit: function (target, source) { // can cause TMTRAINER effect randomly
 			if (!source.isActive) return null;
 			if (this.random(777) !== 42) return; // 1/777 chance to cause TMTRAINER effect
-			var opponent = pokemon.side.foe.active[0];
+			var opponent = target;
 			opponent.setStatus('brn');
 			var possibleStatuses = ['confusion', 'flinch', 'attract', 'focusenergy', 'foresight', 'healblock'];
 			for (var i = 0; i < possibleStatuses.length; i++) {
@@ -330,9 +338,9 @@ exports.BattleMovedex = {
 			if (move.type === 'Fire')
 				this.add('-anim', source, "Flamethrower", target);
 			if (move.type === 'Water')
-				this.add('-anim', source, "Water Gun", target);
+				this.add('-anim', source, "Hydro Pump", target);
 			if (move.type === 'Electric')
-				this.add('-anim', source, "Thunderbolt", target);
+				this.add('-anim', source, "Zap Cannon", target);
 			if (move.type === 'Psychic')
 				this.add('-anim', source, "Psybeam", target);
 			if (move.type === 'Dark')
@@ -376,6 +384,10 @@ exports.BattleMovedex = {
 		isViable: true,
 		pp: 15,
 		priority: 0,
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Zap Cannon', target);
+		},
 		secondaries: [{chance: 20, status: 'par'}, {chance: 20, volatileStatus: 'confusion'}],
 		target: "normal",
 		type: "Electric"
@@ -393,6 +405,10 @@ exports.BattleMovedex = {
 		pp: 15,
 		priority: 0,
 		flags: {protect: 1, mirror: 1, nonsky: 1},
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Spike Cannon', target);
+		},
 		secondary: false,
 		target: "allAdjacent",
 		type: "Water"
@@ -402,20 +418,7 @@ exports.BattleMovedex = {
 		name: 'BEST F-CAR',
 		id: 'bestfcar',
 		basePower: 60,
-		secondaries: [
-			{
-				chance: 20, 
-				status: 'brn'
-			}, 
-			{
-				chance: 100, 
-				self: {
-					boosts: {
-						spa: 1
-					}
-				}
-			}
-		],
+		secondaries: [{chance: 20, status: 'brn'}, {chance: 100, self: {boosts: {spa: 1}}}],
 		accuracy: 100,
 		category: "Special",
 		desc: "Has a 20% chance to burn the target. Raises Sp.Atk by 1 stage.",
@@ -441,7 +444,7 @@ exports.BattleMovedex = {
 		flags: {protect: 1, mirror: 1},
 		onPrepareHit: function (target, source, move) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, 'Discharge', target);
+			this.add('-anim', source, 'Volt Tackle', target);
 		},
 		recoil: [1, 2],
 		onHit: function (target, source, move) {
@@ -476,6 +479,10 @@ exports.BattleMovedex = {
 		pp: 10,
 		type: 'Steel',
 		flags: {contact:1, protect:1, mirror:1},
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Dynamic Punch', target);
+		},
 		onHit: function(target) {
 			var bannedAbilities = {multitype:1, defeatist:1, stancechange:1, truant:1};
 			if (!bannedAbilities[target.ability]) {
@@ -562,12 +569,14 @@ exports.BattleMovedex = {
 		priority: 0,
 		flags: {contact: 1, charge: 1, mirror: 1},
 		breaksProtect: true,
-		onHit: function(pokemon) { 
-			var temp = pokemon.item;
-			pokemon.item = 'pidgeotite'; 
-			if (!pokemon.template.isMega) pokemon.canMegaEvo = this.canMegaEvo(pokemon); 
-			if (pokemon.canMegaEvo) this.runMegaEvo(pokemon);
-			pokemon.item = temp; 
+		self: {
+			onHit: function(pokemon) { 
+				var temp = pokemon.item;
+				pokemon.item = 'pidgeotite'; 
+				if (!pokemon.template.isMega) pokemon.canMegaEvo = this.canMegaEvo(pokemon); 
+				if (pokemon.canMegaEvo) this.runMegaEvo(pokemon);
+				pokemon.item = temp; 
+			}
 		},
 		onTry: function (attacker, defender, move) {
 			if (attacker.removeVolatile(move.id)) {
@@ -606,6 +615,10 @@ exports.BattleMovedex = {
 		flags: {},
 		pp: 10,
 		priority: 0,
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Swords Dance', source);
+		},
 		onHit: function(target) {
 			if (!target.template.isMega) {
 				var megaStoneList = [
@@ -661,7 +674,7 @@ exports.BattleMovedex = {
 				];
 				target.item = megaStoneList.sample(1)[0];
 				this.add('-item', target, target.getItem(), '[from] move: Re-Roll');
-				target.canMegaEvo = target.getItem().megaStone;
+				target.canMegaEvo = this.canMegaEvo(target);
 				var pokemon = target;
 				var item = pokemon.getItem();
 				if (pokemon.isActive && !pokemon.template.isMega && !pokemon.template.isPrimal && (item.id === 'redorb' || item.id === 'blueorb') && pokemon.baseTemplate.tier !== 'Uber' && !pokemon.template.evos.length) {
@@ -698,5 +711,72 @@ exports.BattleMovedex = {
 		secondary: false,
 		target: 'self',
 		type: 'Normal'
+	},
+	'shadowsphere': {
+		num: 640,
+		accuracy: 100,
+		basePower: 90,
+		category: "Special",
+		desc: "Has a 20% chance to lower the target's Special Defense by 1 stage.",
+		shortDesc: "20% chance to lower the target's Sp. Def by 1.",
+		id: "shadowsphere",
+		name: "Shadow Sphere",
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Shadow Ball', target);
+		},
+		pp: 15,
+		priority: 0,
+		flags: {bullet: 1, protect: 1, mirror: 1},
+		secondary: {
+			chance: 20,
+			boosts: {
+				spd: -1
+			}
+		},
+		target: "normal",
+		type: "Ghost"
+	},
+	'drainforce': {
+		num: 641,
+		accuracy: 100,
+		basePower: 60,
+		category: "Special",
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Giga Drain', target);
+		},
+		desc: "The user steals some stats from the target.",
+		shortDesc: "Steals some stats.",
+		id: "drainforce",
+		name: "Drain Force",
+		pp: 10,
+		priority: 0,
+		drain: [1, 2],
+		flags: {protect: 1, mirror: 1},
+		secondary: false,
+		target: "normal",
+		type: "Fighting"
+	},
+	'sneakyspook': {
+		num: 642, // blaze it
+		accuracy: 100,
+		basePower: 40,
+		category: "Special",
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Shadow Sneak', target);
+		},
+		desc: "No additional effect.",
+		shortDesc: "Usually goes first.",
+		id: "sneakyspook",
+		isViable: true,
+		name: "Sneaky Spook",
+		pp: 30,
+		priority: 1,
+		flags: {protect: 1, mirror: 1},
+		secondary: false,
+		target: "normal",
+		type: "Ghost"
 	}
 }
