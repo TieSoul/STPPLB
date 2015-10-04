@@ -309,6 +309,12 @@ exports.BattleScripts = {
 				moves: ['earthquake','earthpower','uturn','dragonclaw','fireblast','boomburst','dragonpulse','return','stoneedge','crunch','ironhead','dragondance','quiverdance'],
 				signatureMove: 'reroll',
 				nature: 'Serious'
+			},
+			'WhatevsFur': {
+				species: 'Ursaring', ability: 'Furrier Coat', item: 'Leftovers', gender: 'F',
+				moves: ['earthquake','drain punch','bulk up','protect','aromatherapy'],
+				signatureMove: 'wish',
+				evs: {hp: 252, def: 188, spd: 88}, nature: 'Calm'
 			}
 		};
 		var pool = Object.keys(sets).randomize();
