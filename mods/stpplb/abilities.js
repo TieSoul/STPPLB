@@ -184,8 +184,8 @@ exports.BattleAbilities = { // define custom abilities here.
 		num: 199
 	},
 	'littleengine': { // Poomph, the little engine who couldn't. Negative version of moody.
-		desc: "This Pokemon has a random stat raised by 1 stage and another lowered by 2 stages at the end of each turn.",
-		shortDesc: "Raises a random stat by 1 and lowers another by 2 at the end of each turn.",
+		desc: "This Pokemon has a random stat raised by 1 stage and another lowered by 1 stage at the end of each turn.",
+		shortDesc: "Raises a random stat by 1 and lowers another by 1 at the end of each turn.",
 		onResidualOrder: 26,
 		onResidualSubOrder: 1,
 		onResidual: function (pokemon) {
@@ -208,7 +208,7 @@ exports.BattleAbilities = { // define custom abilities here.
 			}
 			if (stats.length) {
 				i = stats[this.random(stats.length)];
-				boost[i] = -2;
+				boost[i] = -1;
 			}
 			this.boost(boost);
 		},
