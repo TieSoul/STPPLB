@@ -323,6 +323,12 @@ exports.BattleScripts = {
 				moves: ['hypervoice'],
 				signatureMoves: ['shadowsphere', 'drainforce', 'sneakyspook'],
 				evs: {hp: 248, spa: 252, spe: 8}, nature: 'Modest'
+			},
+			'WhatevsFur': {
+				species: 'Ursaring', ability: 'Furrier Coat', item: 'Leftovers', gender: 'F',
+				moves: ['earthquake','drainpunch','bulkup','protect','aromatherapy'],
+				signatureMove: 'wish',
+				evs: {hp: 252, def: 168, spd: 88}, nature: 'Calm'
 			}
 		};
 		var pool = Object.keys(sets).randomize();
@@ -477,6 +483,12 @@ exports.BattleScripts = {
 				moves: ['hypervoice'],
 				signatureMoves: ['shadowsphere', 'drainforce', 'sneakyspook'],
 				evs: {hp: 248, spa: 252, spe: 8}, nature: 'Modest'
+			},
+			'WhatevsFur': {
+				species: 'Ursaring', ability: 'Furrier Coat', item: 'Leftovers', gender: 'F',
+				moves: ['earthquake','drainpunch','bulkup','protect','aromatherapy'],
+				signatureMove: 'wish',
+				evs: {hp: 252, def: 168, spd: 88}, nature: 'Calm'
 			}
 		};
 		var pool = Object.keys(sets).randomize();
