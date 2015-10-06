@@ -914,3 +914,26 @@ exports.BattleMovedex = {
 		type: "Ice"
 	}
 }
+        'Team AFK'//way different move than afk: {
+		num: 643,
+		accuracy: 100,
+		basePower: 0,
+		category: "Status",
+		desc: "Uses Thunderbolt, Flamethrower, and Rock Slide to create an epic Team AFK attack.",
+		shortDesc: "Uses Thunderbolt, Flamethrower, and Rock Slide to create a Team AFK finish.",
+		id: "teamafk",
+		name: "Team AFK",
+		pp: 16,
+		priority: 0,
+		flags: {},
+		onHit: function(target) {
+			this.useMove('thunderbolt', target);
+			this.useMove('flamethrower', target);
+			this.useMove('rockslide', target);
+			this.useMove('return', target);
+			this.add("c|Team AFK|/me has left the chat..);
+		},
+		secondary: false,
+		target: "self",
+		type: "Normal"
+	},
