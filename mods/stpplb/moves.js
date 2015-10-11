@@ -1023,7 +1023,7 @@ exports.BattleMovedex = {
 		basePower: 100,
 		category: "Physical",
 		desc: "No additional effect.",
-		shortDesc: "Very Nearly always goes first.",
+		shortDesc: "Hits first.",
 		id: "boost",
 		isViable: true,
 		name: "Boost",
@@ -1057,6 +1057,7 @@ exports.BattleMovedex = {
 				this.add('c|' + this.effectData.source.name + '|Tick tick boom!');
 			},
 			onSwitchIn: function(pokemon) {
+				if (!pokemon.isGrounded()) return; // only hits grounded Pokemon
 				this.useMove('Mine', this.effectData.source, pokemon);
 				pokemon.side.removeSideCondition('setmine');
 			}
@@ -1089,6 +1090,7 @@ exports.BattleMovedex = {
 		id: 'locknload',
 		name: 'Lock \'n\' Load',
 		type: 'Steel',
+		flags: {protect: 1, mirror: 1},
 		onTryHit: function (target, source) {
 			if (source.volatiles['lockon']) source.removeVolatile('lockon');
 		},
@@ -1111,12 +1113,12 @@ exports.BattleMovedex = {
 		name: 'Assassinate',
 		pp: 5,
 		priority: 0,
-		flags: {contact: 1, protect: 1, mirror: 1},
+		flags: {bullet: 1, protect: 1, mirror: 1},
 		ohko: true,
 		secondary: false,
 		onPrepareHit: function(target, source) {
 			this.attrLastMove('[still]');
-			this.add('-anim', source, 'Metal Claw', target);
+			this.add('-anim', source, 'Flash Cannon', target);
 		},
 		target: 'normal',
 		type: 'Steel'
@@ -1128,13 +1130,13 @@ exports.BattleMovedex = {
 		category: 'Status',
 		id: 'quicksketch',
 		name: 'Quick Sketch',
-		pp: 5,
+		pp: 10,
 		priority: 0,
-		flags: {protect: 1, authentic: 1},
+		flags: {},
 		onHit: function(target, source) {
-			var disallowedMoves = {struggle:1, transform:1};
-			if (source.transformed || !target.lastMove || disallowedMoves[target.lastMove] || source.moves.indexOf(target.lastMove) >= 0) return false;
-			var move = Tools.getMove(target.lastMove);
+			var disallowedMoves = {copycat:1, focuspunch:1, mimic: 1, quicksketch: 1, sketch:1, sleeptalk:1, snatch:1, struggle:1, transform:1};
+			if (!this.lastMove || disallowedMoves[this.lastMove]) return false;
+			var move = this.lastMove;
 			source.moveset[1] = {
 				move: move.name,
 				id: move.id,
@@ -1142,15 +1144,14 @@ exports.BattleMovedex = {
 				maxpp: move.pp,
 				target: move.target,
 				disabled: false,
-				used: false,
-				virtual: true
+				used: false
 			};
 			source.moves[1] = toId(move.name);
 			this.add('message', source.name + ' acquired ' + move.name + ' using its Quick Sketch!');
 			this.useMove(move, source, target);
 		},
 		secondary: false,
-		target: 'normal',
+		target: 'self',
 		type: 'Normal'
 	},
 	'keepcalmandfocus': {
@@ -1189,6 +1190,7 @@ exports.BattleMovedex = {
 		category: 'Physical',
 		basePower: 80,
 		accuracy: 95,
+		critRatio: 2,
 		onHit: function (target) {
 			target.clearBoosts();
 			target.cureStatus();
