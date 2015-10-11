@@ -815,6 +815,7 @@ exports.BattleMovedex = {
 			if (pokemon.hasType('Flying')) return;
 			if (!pokemon.addType('Flying')) return;
 			this.add('-start', pokemon, 'typeadd', 'Flying', '[from] move: BAWK!');
+			this.add('-anim', source, 'Roost', source);
 		},
 		heal: [1, 2],
 		secondary: false,
@@ -870,6 +871,11 @@ exports.BattleMovedex = {
 		pp: 30,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', target, 'Icicle Crash', target);
+			this.add('-anim', source, 'Slash', target);
+		},
 		critRatio: 2, //nerf imo
 		multihit: [2, 5],
 		secondary: false,
@@ -891,6 +897,10 @@ exports.BattleMovedex = {
 		beforeTurnCallback: function (pokemon) {
 			pokemon.addVolatile('ganonssword');
 			this.boost({def:2,spd:2}, pokemon);
+		},
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Sacred Sword', target);
 		},
 		beforeMoveCallback: function(pokemon) {
 			if (!pokemon.removeVolatile('ganonssword')) {
@@ -963,9 +973,7 @@ exports.BattleMovedex = {
 			this.add('-anim', source, 'Tri Attack', target);
 		},
 		priority: 0,
-		secondaries: [
-			{chance: 45, volatileStatus: 'confusion'},
-			{chance: 35, status: 'par'}],
+		secondaries: [{chance: 30, volatileStatus: 'confusion'}, {chance: 30, status: 'par'}],
 		target: "any",
 		type: "Water"
 	},
@@ -994,6 +1002,10 @@ exports.BattleMovedex = {
 		pp: 20,
 		priority: 0,
 		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Rollout', target);
+		},
 		effect: {
 			duration: 2,
 			onLockMove: 'spindash',
@@ -1030,6 +1042,10 @@ exports.BattleMovedex = {
 		pp: 5,
 		priority: 3,
 		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Extreme Speed', target);
+		},
 		secondary: false,
 		target: "normal",
 		type: "Normal"
@@ -1050,6 +1066,7 @@ exports.BattleMovedex = {
 		sideCondition: 'setmine',
 		onPrepareHit: function(target, source, move) { // animation
 			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Recover', source);
 		},
 		effect: {
 			onStart: function(side) {
@@ -1091,6 +1108,10 @@ exports.BattleMovedex = {
 		name: 'Lock \'n\' Load',
 		type: 'Steel',
 		flags: {protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Mean Look', target);
+		},
 		onTryHit: function (target, source) {
 			if (source.volatiles['lockon']) source.removeVolatile('lockon');
 		},
@@ -1163,6 +1184,10 @@ exports.BattleMovedex = {
 		basePower: 0,
 		accuracy: true,
 		flags: {snatch: 1, heal: 1},
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Calm Mind', source);
+		},
 		onHit: function(pokemon) {
 			if (this.random(10) === 0) {
 				this.heal(this.modify(pokemon.maxhp, 0.25));
@@ -1191,6 +1216,11 @@ exports.BattleMovedex = {
 		basePower: 80,
 		accuracy: 95,
 		critRatio: 2,
+		flags: {contact: 1, protect: 1, mirror: 1},
+		onPrepareHit: function(target, source, move) { // animation
+			this.attrLastMove('[still]');
+			this.add('-anim', source, 'Close Combat', target);
+		},
 		onHit: function (target) {
 			target.clearBoosts();
 			target.cureStatus();
