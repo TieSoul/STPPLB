@@ -371,7 +371,7 @@ exports.BattleAbilities = { // define custom abilities here.
 	},
 	'banevade': {
 		desc: "This Pokemon's evasion is evaluated by end of each turn. Higher evasion at lower HP.",
-		shortDesc: "Higher evasion at lower HP.",
+		shortDesc: "Higher evasion at lower HP. Immune to OHKO.",
 		onTryHit: function (pokemon, target, move) {
 			if (move.ohko) {
 				this.add('-immune', pokemon, '[msg]');
@@ -422,7 +422,7 @@ exports.BattleAbilities = { // define custom abilities here.
 		num: 209
 	},
 	'physicalakazam': { // Makes Alakazam into a physical tank
-		shortDesc: "This Pokemon's Attack is increased 2.5x and its Defense is doubled.",
+		shortDesc: "This Pokemon's Attack is 2.5x and its Defense is doubled.",
 		onModifyDefPriority: 6,
 		onModifyDef: function (def) {
 			return this.chainModify(2);
@@ -437,12 +437,10 @@ exports.BattleAbilities = { // define custom abilities here.
 		num: 210
 	},
 	"defiantplus": {
-		desc: "This Pokemon's Attack and Speed is raised by 2 stages for each of its stat stages that is lowered by an opposing Pokemon. If this Pokemon has a major status condition, its Speed is multiplied by 1.5; the Speed drop from paralysis is ignored.",
-		shortDesc: "This Pokemon's Attack and Speed is raised by 2 for each of its stats that is lowered by a foe. If this Pokemon is statused, its Speed is 1.5x; ignores Speed drop from paralysis.",
+		desc: "This Pokemon's Attack and Speed are raised by 2 stages for each of its stat stages that is lowered by an opposing Pokemon. If this Pokemon has a major status condition, its Speed is multiplied by 1.5; the Speed drop from paralysis is ignored.",
+		shortDesc: "This Pokemon's Attack and Speed are raised by 2 for each of its stats that is lowered by a foe. If this Pokemon is statused, its Speed is 1.5x; ignores Speed drop from paralysis.",
 		onAfterEachBoost: function (boost, target, source) {
-			if (!source || target.side === source.side) {
-				return;
-			}
+			if (!source || target.side === source.side) return;
 			var statsLowered = false;
 			for (var i in boost) {
 				if (boost[i] < 0) {
@@ -460,7 +458,7 @@ exports.BattleAbilities = { // define custom abilities here.
 		},
 		id: "defiantplus",
 		name: "Defiant Plus",
-		rating: 2.5,
+		rating: 3,
 		num: 211
 	},
 	'silverscale': { // Abyll's Milotic's ability: Upgraded marvel scale
@@ -486,14 +484,15 @@ exports.BattleAbilities = { // define custom abilities here.
 	'gottagofast': { // Pokson's speedboost
 		id: 'gottagofast',
 		name: 'Gotta Go Fast',
-		rating: 2.5,
+		rating: -1,
 		num: 213,
 		desc: "Chance of boosting speed when using signature move",
-		shortDesc: "Chance of boost when using special move",
+		shortDesc: "10% chance to raise Speed by 6 when using Boost or Spin Dash.",
 		onAnyMove: function (target, source, move) {
-			if(move.id == "boost" || move.id == "spindash") {
-				if(this.random(1) == 0)
+			if(move.id === "boost" || move.id === "spindash") { //syntax pls
+				if(this.random(10) === 0) {
 					this.boost({spe: 6}, source);
+				}
 			}
 		},
 		onStart: function (pokemon) {
@@ -503,7 +502,7 @@ exports.BattleAbilities = { // define custom abilities here.
 	'drawingrequest': {
 		id: 'drawingrequest',
 		name: 'Drawing Request',
-		rating: 3,
+		rating: 2,
 		num: 214,
 		desc: "At the end of each turn, replaces this Pokemon's first move with a random move from the pool of all Special attacks >= 60 BP and all status moves, minus the ones that boost the user's Attack stat, and the ones this Pokemon already has.",
 		shortDesc: 'TL;DR',
@@ -518,7 +517,7 @@ exports.BattleAbilities = { // define custom abilities here.
 				if (move.isNonstandard) continue;
 				if (move.category === 'Physical') continue;
 				if (move.basePower < 60) continue;
-				if (move.category === 'Status' && move.boosts && move.boosts.atk && move.boosts.atk > 0) continue;
+				if (move.category === 'Status' && move.boosts && move.boosts.atk && move.boosts.atk > 0 && move.name !== "Swagger") continue;
 				if (pokemon.hasMove(move)) continue;
 				moves.push(move);
 			}
@@ -537,11 +536,10 @@ exports.BattleAbilities = { // define custom abilities here.
 				maxpp: move.pp,
 				target: move.target,
 				disabled: false,
-				used: false,
-				virtual: true
+				used: false
 			};
 			pokemon.moves[0] = toId(move.name);
-			this.add('message', pokemon.name + ' acquired ' + move.name + ' using its Drawing Request!');
+			this.add('message', pokemon.name + ' acquired a new move using its Drawing Request!'); // not showing move name to opponent
 		}
 	},
 	"mindgames": {
