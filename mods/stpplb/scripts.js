@@ -224,12 +224,12 @@ exports.BattleScripts = {
 				signatureMoves: ['rainbowspray'],
 				evs: {hp: 252, def: 252, spdef: 4}, nature: 'Sassy'
 			},
-			'Speedy Pokson': {
+			/*'Speedy Pokson': { // STPPLB+ only
 				species: 'Serperior', ability: 'Gotta Go Fast', item: 'Speed Shoes', gender: 'M',
 				moves: ['flyingpress', 'bulletpunch', 'rollout', 'extremespeed','quickattack','leafblade','watershuriken','mysticalfire','aurasphere'],
 				signatureMoves: ['spindash','boost'],
 				evs: {spe: 252, atk: 252, hp: 4}, nature: 'Jolly'
-			},
+			},*/
 			'ColeWalski': {
 				species: 'Empoleon', ability: 'Sniper', item: 'Scope Lens', gender: 'M',
 				moves: ['hydropump','flashcannon'],
