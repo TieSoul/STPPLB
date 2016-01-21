@@ -205,7 +205,6 @@ exports.Formats = [
 			}
 			if (name === 'pikalaxalt') {
 				this.boost({def:1, spd:1}, pokemon);
-				this.add('c|PikalaxALT|ヽ༼ຈل͜ຈ༽ﾉ RIOT ヽ༼ຈل͜ຈ༽ﾉ');
 			}
 			if (name === 'xfix') { // different message depending on hazards.
 				var hazards = {stealthrock: 1, spikes: 1, toxicspikes: 1, stickyweb: 1};
@@ -226,6 +225,7 @@ exports.Formats = [
 			else if (name === 'lasszeowx') this.add("c|Lass zeowx|Oh, a new challenger?");
 			else if (name === 'kapnkooma') this.add("c|Kap'n Kooma|Hoist the black flag lads!");
 			else if (name === 'kooma9') this.add("c|Kooma9|ello");
+			else if (name === 'pikalaxalt') this.add("c|PikalaxALT|ヽ༼ຈل͜ຈ༽ﾉ RIOT ヽ༼ຈل͜ຈ༽ﾉ");
 			else if (name === 'best') this.add("raw|<big>GO AWAY</big>");
 			else if (name === 'poomph') this.add("c|Poomph|I'm sure I'll win this time!");
 			else if (name === 'tadpole_0f_doom') this.add("c|Tadpole_0f_Doom|I'm not racist. I own Pokemon Black. TriHard");
@@ -234,7 +234,10 @@ exports.Formats = [
 			else if (name === 'nofunmantis') this.add("c|NoFunMantis|gldhf");
 			else if (name === 'dictatormantis') this.add("c|DictatorMantis|Do you even have enough yays to be battling?");
 			else if (name === 'xinc') this.add("c|Xinc|Iwa took Gengar. DansGame");
-			else if (name === 'natsugan') this.add('c|Natsugan|Flygonite when');
+			else if (name === 'natsugan') this.add("c|Natsugan|Flygonite when");
+			else if (name === 'colewalski') this.add("c|ColeWalski|Allons-y and GERONIMOOO!");
+			else if (name === 'liria_10') this.add("c|Liria_10|let's draw all night!");
+			else if (name === 'speedypokson') this.add("c|Speedy Pokson|YOU'RE TOO SLOW!");
 			else this.add('c|' + (pokemon.illusion ? pokemon.illusion.name : pokemon.name) + '|PLACEHOLDER MESSAGE PLEASE CONTACT TIESOUL');
 			var item = pokemon.getItem();
 			if (pokemon.isActive && !pokemon.template.isMega && !pokemon.template.isPrimal && (item.id === 'redorb' || item.id === 'blueorb') && pokemon.baseTemplate.tier !== 'Uber' && !pokemon.template.evos.length) {
@@ -308,8 +311,11 @@ exports.Formats = [
 			else if (name === 'nofunmantis') this.add("c|NoFunMantis|GGCtrl27");
 			else if (name === 'dictatormantis') this.add("c|DictatorMantis|bg DansGame");
 			else if (name === 'xinc') this.add("c|Xinc|Bruh");
-			else if (name === 'natsugan') this.add('c|Natsugan|hax imo');
-			else if (name === 'pikalaxalt') this.add('c|PikalaxALT|Wow Deku OneHand');
+			else if (name === 'natsugan') this.add("c|Natsugan|hax imo");
+			else if (name === 'pikalaxalt') this.add("c|PikalaxALT|Wow Deku OneHand");
+			else if (name === 'colewalski') this.add("c|ColeWalski|Dced again");
+			else if (name === 'liria_10') this.add("c|Liria_10|why is art so difficult ;_;");
+			else if (name === 'speedypokson') this.add("c|Speedy Pokson|C'MON, STEP IT UP!");
 		},
 		onBegin: function() {
 			// Mix and Mega stuff
